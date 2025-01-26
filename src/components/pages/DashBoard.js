@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { animate, stagger } from "@motionone/dom";
+import CoinHighLights from '../contents/CoinHighLights';
+import DashBoardSearchBar from '../contents/DashBoardSearchBar';
 
 const DashBoard = () => {
   const [news, setNews] = useState([]);
@@ -81,6 +83,9 @@ const DashBoard = () => {
     .map((date) => new Intl.DateTimeFormat("en-US", options).format(date));
 
   return (
+    <>
+        <CoinHighLights/>
+    <DashBoardSearchBar/>
     <div className="n-container">
       {news.map((article, index) => (
         <div
@@ -104,6 +109,7 @@ const DashBoard = () => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 
