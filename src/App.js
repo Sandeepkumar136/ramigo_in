@@ -5,6 +5,7 @@ import { NavbarToggleContextProvider } from './components/contexts/NavbartoggleC
 import DashBoard from './components/pages/DashBoard';
 import CoinHighlightProvider from './components/contexts/CoinHighLightContext';
 import { SearchBarDialogueProvider } from './components/contexts/SearchBarDialogueContext';
+import SearchBarDialogue from './components/dialog/SearchBarDialogue';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <div>
           <Navbar />
           <DashBoard />
+          <SearchBarDialogue/>
         </div>
       </CoinHighlightProvider>
       </SearchBarDialogueProvider>
