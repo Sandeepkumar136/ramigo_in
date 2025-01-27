@@ -2,7 +2,7 @@ import React from 'react'
 import { useSearchBar } from '../contexts/SearchBarDialogueContext';
 
 const SearchBarDialogue = () => {
-    const { CloseSearchBar, isSearchBarOpen} = useSearchBar();
+    const { CloseSearchBar, isSearchBarOpen, dialogSearchRef} = useSearchBar();
 
     const handleOnCloseDialog = (e) =>{
         if(e.target.id==="SearchBar-Overlay"){
@@ -14,9 +14,9 @@ const SearchBarDialogue = () => {
 
   return (
     isSearchBarOpen && (
-        <div onClick={handleOnCloseDialog} id="SearchBar-Overlay">
+        <div onClick={handleOnCloseDialog}  id="SearchBar-Overlay">
             <div className="Searchbar-d-content">
-                <input type="text" name="searchbar" id="search-d-bar" className="input-d-search" />
+                <input placeholder='Search Articles...' type="text" name="searchbar" ref={dialogSearchRef} id="search-d-bar" className="searchbar-dashboard" />
             </div>
         </div>
     )

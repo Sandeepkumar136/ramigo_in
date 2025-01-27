@@ -1,19 +1,43 @@
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useRef, useEffect } from "react";
 
+// Create the context
 const SearchBarDialogueContext = createContext();
 
-export const SearchBarDialogueProvider = ({children})=>{
-    const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
-    const OpenSearchBar = () => setIsSearchBarOpen(true);
-    const CloseSearchBar = () => setIsSearchBarOpen(false);
+// Context Provider
+export const SearchBarDialogueProvider = ({ children }) => {
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false); // State to manage dialog visibility
+  const dialogSearchRef = useRef(null); // Ref for dialog search bar
 
-    return (
-        <SearchBarDialogueContext.Provider value={{OpenSearchBar, CloseSearchBar, isSearchBarOpen}}>
-        {children}
-        </SearchBarDialogueContext.Provider>
-    );
+  // Open search bar and focus the dialog search bar
+  const OpenSearchBar = () => {
+    setIsSearchBarOpen(true);
+  };
+
+  // Close the search bar
+  const CloseSearchBar = () => {
+    setIsSearchBarOpen(false);
+  };
+
+  // Focus the search bar inside the dialog
+  useEffect(() => {
+    if (isSearchBarOpen) {
+      const timeout = setTimeout(() => {
+        dialogSearchRef.current?.focus();
+      }, 0); // Ensure focus is applied after render
+      return () => clearTimeout(timeout); // Clean up
+    }
+  }, [isSearchBarOpen]);
+
+  return (
+    <SearchBarDialogueContext.Provider
+      value={{ OpenSearchBar, CloseSearchBar, isSearchBarOpen, dialogSearchRef }}
+    >
+      {children}
+    </SearchBarDialogueContext.Provider>
+  );
 };
 
-export const useSearchBar = () =>{
-   return useContext(SearchBarDialogueContext);
-}
+// Custom Hook to use the context
+export const useSearchBar = () => {
+  return useContext(SearchBarDialogueContext);
+};
