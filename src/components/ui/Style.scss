@@ -325,7 +325,10 @@ body {
   justify-content: center;
   align-items: center;
   padding: 2rem;
+  width: 100%;
   background-color: rgb(234, 231, 231);
+  justify-self: center;
+  align-self: center;
 }
 .searchbar-dashboard {
   display: flex;
