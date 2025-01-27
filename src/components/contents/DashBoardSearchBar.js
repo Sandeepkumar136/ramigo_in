@@ -17,7 +17,7 @@ const DashBoardSearchBar = () => {
         type="text"
         name="Search"
         id="Searchbar"
-        className="searchbar-dashboard"
+        className="searchbar-dashboard" disabled
       />
     </div>
   );
