@@ -19,10 +19,12 @@ import ThreadInteligenceTool from './components/pages/ThreadInteligenceTool';
 import Vulneburity from './components/pages/Vulneburity';
 import { SettingDialogueContextProvider } from './components/contexts/SettingDialogue';
 import SettingDialogue from './components/dialog/SettingDialogue';
+import { DarkModeProvider } from './components/contexts/DarkModeContext';
 
 const App = () => {
   return (
     <Router>
+    <DarkModeProvider>
     <NavbarToggleContextProvider>
       <SettingDialogueContextProvider>
       <SearchBarDialogueProvider>
@@ -48,6 +50,7 @@ const App = () => {
       </SearchBarDialogueProvider>
       </SettingDialogueContextProvider>
     </NavbarToggleContextProvider>
+    </DarkModeProvider>
     </Router>
   )
 }
