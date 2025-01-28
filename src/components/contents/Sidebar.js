@@ -64,11 +64,11 @@ const Sidebar = ({ OnItemsClick }) => {
             <div className={`sidebar ${isSidebar ? "open" : ""}`}>
                 {
                     Navitems.map((item, index) => (
-                        <div key={index} onClick={() => { OnItemsClick(item.title); }} className="sidebar-list">
-                            <Link to={item.path} onClick={()=>{ToggleSidebar();}} className="sidebar-items">
+                        <Link to={item.path} key={index} onClick={() => { OnItemsClick(item.title); ToggleSidebar(); }} className="sidebar-list">
+                            <li  onClick={()=>{ToggleSidebar();}} className="sidebar-items">
                                 <span className="sidebar-icons"><i className={item.icon}></i></span> <span className="sidebar-item-title">{item.title}</span>
-                            </Link>
-                        </div>
+                            </li>
+                        </Link>
                     ))
                 }
                 <div className="sidebar-list">
@@ -76,8 +76,8 @@ const Sidebar = ({ OnItemsClick }) => {
                         <span className="sidebar-icons"><i className="bx bx-bookmarks"></i></span> <span className="sidebar-item-title">Saved</span>
                     </li>
                 </div>
-                <div className="sidebar-list">
-                    <li onClick={()=> {OpenSetting(); ToggleSidebar();}} className="sidebar-items">
+                <div onClick={()=> {OpenSetting(); ToggleSidebar();}} className="sidebar-list">
+                    <li  className="sidebar-items">
                         <span className="sidebar-icons"><i className="bx bx-cog"></i></span> <span className="sidebar-item-title">Settings</span>
                     </li>
                 </div>
