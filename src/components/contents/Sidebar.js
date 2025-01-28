@@ -1,9 +1,11 @@
 import React from 'react'
 import { useNavToggle } from '../contexts/NavbartoggleContext';
 import { Link } from 'react-router-dom';
+import { useSettingDialogue } from '../contexts/SettingDialogue';
 
 const Sidebar = ({ OnItemsClick }) => {
     const { isSidebar, ToggleSidebar } = useNavToggle();
+    const {OpenSetting} = useSettingDialogue();
     const Navitems = [
         {
             "title": "Cryptocurrency",
@@ -75,7 +77,7 @@ const Sidebar = ({ OnItemsClick }) => {
                     </li>
                 </div>
                 <div className="sidebar-list">
-                    <li onClick={ToggleSidebar} className="sidebar-items">
+                    <li onClick={()=> {OpenSetting(); ToggleSidebar();}} className="sidebar-items">
                         <span className="sidebar-icons"><i className="bx bx-cog"></i></span> <span className="sidebar-item-title">Settings</span>
                     </li>
                 </div>

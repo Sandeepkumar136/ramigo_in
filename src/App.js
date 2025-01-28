@@ -17,14 +17,18 @@ import NetworkAndPortsTools from './components/pages/NetworkAndPortsTools';
 import PasswordSecurity from './components/pages/PasswordSecurity';
 import ThreadInteligenceTool from './components/pages/ThreadInteligenceTool';
 import Vulneburity from './components/pages/Vulneburity';
+import { SettingDialogueContextProvider } from './components/contexts/SettingDialogue';
+import SettingDialogue from './components/dialog/SettingDialogue';
 
 const App = () => {
   return (
     <Router>
     <NavbarToggleContextProvider>
+      <SettingDialogueContextProvider>
       <SearchBarDialogueProvider>
       <CoinHighlightProvider>
           <Navbar />
+          <SettingDialogue/>
           <SearchBarDialogue/>
         <Routes>
           <Route path='/' element={<DashBoard/>} />
@@ -42,6 +46,7 @@ const App = () => {
         </Routes>
       </CoinHighlightProvider>
       </SearchBarDialogueProvider>
+      </SettingDialogueContextProvider>
     </NavbarToggleContextProvider>
     </Router>
   )
