@@ -1,7 +1,7 @@
 
 # Ramigo.in
 
-**Ramigo.in** is a versatile web application that integrates features from cryptocurrency tracking, forex market analysis, and cybersecurity tools. Built using **React** and powered by **open APIs**, this application aims to provide users with a seamless and secure experience for monitoring financial markets and safeguarding their online presence.
+**Ramigo.in** is a versatile web application that integrates features from cryptocurrency tracking, forex market analysis, and cybersecurity tools. Built using **React** and powered by **open APIs**, this application aims to provide users with a seamless and secure experience for monitoring financial markets and safeguarding their online presencee.
 
 ---
 
