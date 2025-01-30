@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CoinHighLights from '../contents/CoinHighLights';
 
 const CryptoCoins = () => {
-  const API_
   return (
     <>
     <CoinHighLights/>
