@@ -651,9 +651,6 @@ body {
   align-items: center;
   gap: 0.2rem;
 }
-.currency-item-m-cap{
-  font-weight: bold;
-}
 .m-cap-text{
   font-size: 0.8rem;
 }
@@ -705,7 +702,10 @@ body {
   }
 
   .coin-s-heading, .coin-heading, .coin-sub-text, .currency-item, .m-cap-text {
-    font-size: 0.8rem; /* Adjust font size for mobile view */
+    font-size: 0.7rem; /* Adjust font size for mobile view */
+  }
+  .currency-item-m-cap{
+    font-size: 0.8rem;
   }
 
   .price-coin-icon-span {

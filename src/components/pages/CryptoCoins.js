@@ -50,10 +50,6 @@ const CryptoCoins = () => {
             </div>
             <div className="coin-down-contain">
               <h4 className="coin-heading">{e.name}</h4>
-              <p className="text-coin-m-cap">
-                <span className="currency-item-m-cap">$</span>
-                <span className="m-cap-text">{e.market_cap.toLocaleString()}</span>
-              </p>
               <p className="text-coin">
                 <span className="coin-sub-text">Price: </span>
                 <span className="currency-item">$</span>
@@ -68,6 +64,11 @@ const CryptoCoins = () => {
 
                 </span>
               </p>
+              <p className="text-coin-m-cap">
+                <span className="currency-item-m-cap">CAP: $</span>
+                <span className="m-cap-text">{e.market_cap.toLocaleString()}</span>
+              </p>
+              <p className='cps'><span className='price-h' style={{ color: `${e.price_change_percentage_24h > 0 ? "green" : "red"}` }} >{e.price_change_percentage_24h.toFixed(2)}%</span> <span className='price-icon-h'><i className={`price-icon-main bx ${e.price_change_percentage_24h > 0 ? "bxs-up-arrow" : "bxs-down-arrow"}`} style={{ color: `${e.price_change_percentage_24h > 0 ? "green" : "red"}` }} ></i></span> </p>
             </div>
           </div>
         ))}
