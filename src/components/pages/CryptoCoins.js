@@ -44,8 +44,10 @@ const CryptoCoins = () => {
         {coins.map((e) => (
           <div key={e.id} className="coin-card-contain">
             <div className="coin-card-img-contain">
-              <img className='c-coin-img' src={e.image} alt="Coin" />
+              <div className="coin-heading-config">
+                <img className='c-coin-img' src={e.image} alt="Coin" />
               <h4 className="coin-s-heading">{e.symbol.toUpperCase()}</h4>
+              </div>
               <i className="icon-f-coin bx bx-bookmark"></i>
             </div>
             <div className="coin-down-contain">
