@@ -886,9 +886,17 @@ body {
 @media only screen and (max-width: 900px) {
   .c-e-container {
     width: 100%;
-    padding: 2rem;
+    padding: 0 2rem 2rem 2rem;
     gap: 1rem;
     flex-direction: column;
+  }
+  .heading-c-c {
+    padding: 0;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: start;
+    align-items: start;
   }
 }
 @media (max-width: 480px) {
