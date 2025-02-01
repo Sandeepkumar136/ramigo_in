@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
-import CurrencyItems from "../JSON/Currency";
-import CurrencyConvertor from "../contents/CurrencyConvertor";
-import CurrencyHighlights from "../contents/CurrencyHighLights";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const Forex = () => {
+const CurrencyHighlights = () => {
   const [rates, setRates] = useState({});
   const [prevRates, setPrevRates] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   const baseCurrency = "USD";
+  const selectedCurrencies = ["INR", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY", "SGD", "NZD"];
 
   useEffect(() => {
     const fetchRates = async () => {
       try {
-        // Fetch latest exchange rates
+        setLoading(true);
+        setError(false);
+
+        // Fetch today's exchange rates
         const response = await fetch(`https://api.frankfurter.app/latest?from=${baseCurrency}`);
         const data = await response.json();
         setRates(data.rates);
@@ -50,6 +57,9 @@ const Forex = () => {
 
       } catch (error) {
         console.error("Error fetching exchange rates:", error);
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -58,53 +68,43 @@ const Forex = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const sliderSettings = {
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    slidesToShow: 5, // Default for large screens
+    slidesToScroll: 2,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 4 } },
+      { breakpoint: 768, settings: { slidesToShow: 3 } },
+      { breakpoint: 480, settings: { slidesToShow: 2 } },
+    ],
+  };
+
   return (
-    <>
-    <CurrencyHighlights/>
-    <div className="coin-card-container">
-      {CurrencyItems.map((item) => {
-        const currentRate = rates[item.code] || 0;
-        const previousRate = prevRates[item.code] || null;
+    <div className="highlight-coins">
+      {loading && <div>Loading...</div>}
+      {error && <div className="error">Error fetching exchange rates.</div>}
+      {!loading && !error && rates ? (
+        <Slider {...sliderSettings}>
+          {selectedCurrencies.map((currency) => {
+            const currentRate = rates[currency] || 0;
 
-        let percentageChange = "N/A";
-
-        if (previousRate !== null) {
-          const change = currentRate - previousRate;
-          percentageChange = ((change / previousRate) * 100).toFixed(2);
-        }
-
-        console.log(`Currency: ${item.code}, Current: ${currentRate}, Previous: ${previousRate}, % Change: ${percentageChange}`);
-
-        return (
-          <div className="coin-card-contain" key={item.code}>
-            <div className="coin-card-img-contain">
-              <div className="coin-heading-config">
-                <img className="c-coin-img" src={item.img} alt={item.title} />
-                <h4 className="heading-for">{item.code}</h4>
+            return (
+              <div className="slider-items" key={currency}>
+                <div className="hc-con-a-b">
+                  <h4 className="c-h-heading">{currency}</h4>
+                  <p className="c-h-text">${currentRate.toFixed(4)}</p>
+                </div>
               </div>
-              <i className="bx bx-bookmark"></i>
-            </div>
-            <h4 className="heading-m-for">{item.title}</h4>
-            <p className="text-for">
-              <span className="cur-text-span">Rate:</span> {currentRate.toFixed(4)}
-            </p>
-            <p className="pera_icon_for" style={{ color: percentageChange > 0 ? "green" : percentageChange < 0 ? "red" : "black", fontWeight: "bold" }}>
-              <span className="span-text-for">{percentageChange}%</span>
-              {percentageChange > 0 ? (
-                <i className="icon-for bx bx-trending-up"></i>
-              ) : percentageChange < 0 ? (
-                <i className="icon-for bx bx-trending-down"></i>
-              ) : (
-                "▬"
-              )}
-            </p>
-          </div>
-        );
-      })}
+            );
+          })}
+        </Slider>
+      ) : (
+        <div>No Currency Data Available</div>
+      )}
     </div>
-    <CurrencyConvertor/>
-    </>
   );
 };
 
-export default Forex;
+export default CurrencyHighlights;
