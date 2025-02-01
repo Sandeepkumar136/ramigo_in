@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 
 const CoinHighLights = () => {
-    const {coins, loading, cerror, fetchCoins} = useContext(CoinHighlightContext);
+    const {coins, loading, cerror} = useContext(CoinHighlightContext);
 
     const sliderSettings = {
         infinite: true,
